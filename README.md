@@ -28,12 +28,13 @@ You have to have an Exact Online account and an app setup to connect with.
 
 You have to set a few variables to make a connection possible. I'd suggest using environment variables set with [dotenv](https://github.com/bkeepers/dotenv) for that.
 
-Then configure Elmas like this
+Then configure Elmas like this (take these values from your app that you setup at apps.exactonline.com)
 
 ```ruby
 Elmas.configure do |config|
   config.client_id = ENV['CLIENT_ID']
   config.client_secret = ENV['CLIENT_SECRET']
+  config.redirect_uri = ENV['REDIRECT_URI']
 end
 ```
 
