@@ -6,9 +6,7 @@ module Elmas
       "logistics/SalesItemPrices"
     end
 
-    def mandatory_attributes
-    end
-
+    def mandatory_attributes; end
 
     def other_attributes
       [
