@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/exactonline/exactonline-api-ruby-client.svg?branch=master)](https://travis-ci.org/exactonline/exactonline-api-ruby-client)
 [![Code Climate](https://codeclimate.com/github/exactonline/exactonline-api-ruby-client/badges/gpa.svg)](https://codeclimate.com/github/exactonline/exactonline-api-ruby-client)
 [![Gem Version](https://badge.fury.io/rb/elmas.svg)](http://badge.fury.io/rb/elmas)
+[![Join the chat at https://gitter.im/exactonline/exactonline-api-ruby-client](https://badges.gitter.im/exactonline/exactonline-api-ruby-client.svg)](https://gitter.im/exactonline/exactonline-api-ruby-client?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Elmas
 
