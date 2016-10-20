@@ -1,7 +1,17 @@
+## 2.3.2
+
+- Fix ruby_dep dependency
+- Add SaleItemPrices Resource
+- Add some missing attributes, thanks @Dahie and @Korstiaan
+- Make it easier to setup more diverse exact requests
+These changes make the requests to exact slightly more flexible to configure.
+This is useful to reuse the Request class also connecting to the XML-API of exact. Also thanks to @Dahie (f7d3e6d7481544ef9148f52175bc1a1d31a16e8e)
+
 ## 2.3.1
 
 - Fix typo in bank entry
 - Add GL_account to invoice line
+
 
 ## 2.3.0
 
