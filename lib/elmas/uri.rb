@@ -55,7 +55,7 @@ module Elmas
           end
 
         when Date, Time
-          "datetime'#{value.strftime("%FT%TZ")}'"
+          "datetime'#{value.strftime('%FT%TZ')}'"
 
         else
           value
