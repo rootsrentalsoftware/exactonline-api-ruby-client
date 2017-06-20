@@ -1,5 +1,5 @@
 module Elmas
-  class BadRequestException < RuntimeError
+  class BadRequestException < StandardError
     def initialize(response, parsed)
       @response = response
       @parsed = parsed
@@ -11,8 +11,9 @@ module Elmas
     end
   end
 
-  class UnauthorizedException < RuntimeError; end
-  class InvalidAttributeException < RuntimeError
+  class UnauthorizedException < StandardError; end
+    
+  class InvalidAttributeException < StandardError
     def initialize(invalid_attributes)
       @invalid_attributes = invalid_attributes
       super(message)
@@ -23,7 +24,7 @@ module Elmas
     end
   end
 
-  class InvalidResourceException < RuntimeError
+  class InvalidResourceException < StandardError
     def initialize(name)
       @name = name
     end
@@ -34,4 +35,6 @@ module Elmas
         and open an issue or pull request"
     end
   end
+
+  class UnauthorizedException < StandardError; end
 end
