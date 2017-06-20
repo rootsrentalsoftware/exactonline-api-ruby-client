@@ -44,8 +44,13 @@ module Elmas
 
     def resource_class
       @resource_class ||= begin
-        constant_name = Utils.modulize(type)
-        Object.const_get(constant_name)
+        constant_name = type.classify
+        fail NameError unless constant_name =~ /\A[a-zA-Z0-9]+\z/
+
+        klass = Elmas.const_get(constant_name, false)
+        fail NameError unless klass.included_modules.include?(Elmas::Resource)
+
+        klass
       rescue NameError
         Elmas.info("Unknown resource encountered, proceed as usual but further resource details might have to be implemented")
         Class.new { include Elmas::Resource }

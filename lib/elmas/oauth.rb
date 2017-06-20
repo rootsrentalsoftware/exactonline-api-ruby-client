@@ -48,14 +48,14 @@ module Elmas
       options[:response_type] ||= "code"
       options[:redirect_uri] ||= redirect_uri
       params = authorization_params.merge(options)
-      uri = URI("https://start.exactonline.nl/api/oauth2/auth/")
+      uri = URI("#{base_url}/api/oauth2/auth/")
       uri.query = URI.encode_www_form(params)
       uri.to_s
     end
 
     # Return an access token from authorization
     def get_access_token(code, _options = {})
-      conn = Faraday.new(url: "https://start.exactonline.nl") do |faraday|
+      conn = Faraday.new(url: base_url) do |faraday|
         faraday.request :url_encoded
         faraday.adapter Faraday.default_adapter
       end
