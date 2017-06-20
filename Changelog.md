@@ -1,3 +1,7 @@
+## 2.3.3
+
+- Add bank accounts resource
+
 ## 2.3.2
 
 - Fix ruby_dep dependency
