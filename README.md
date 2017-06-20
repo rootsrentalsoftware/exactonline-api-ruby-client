@@ -5,7 +5,21 @@
 
 # Elmas
 
-Elmas means diamond, but in this case it's an API wrapper for [Exact Online](https://developers.exactonline.com/).
+Elmas means diamond, but in this case it's an API wrapper for [Exact Online](https://developers.exactonline.com/). This gem was created by [@Marthyn](https://github.com/marthyn), [Hoppinger](http://www.hoppinger.com) and a few people:
+
+### Contributers
+
+* [Commuun](https://github.com/commuun)
+* [dunyakirkali](https://github.com/dunyakirkali)
+* [Korstiaan](https://github.com/korstiaan)
+* [confiks](https://github.com/confiks)
+* [Menno-de-brie](https://github.com/Menno-de-brie)
+* [Dahie](https://github.com/Dahie)
+* [mipmip](https://github.com/mipmip)
+* [Bramjetten](https://github.com/Bramjetten)
+* [LaurensN](https://github.com/LaurensN)
+
+Thanks for helping! If you want to contribute read through this readme how to!
 
 ## Installation
 
@@ -258,4 +272,3 @@ When you're editing code it's advised you run guard, which watches file changes 
 
 This gem was created by [Hoppinger](http://www.hoppinger.com)
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-ruby.svg)](http://www.hoppinger.com)
