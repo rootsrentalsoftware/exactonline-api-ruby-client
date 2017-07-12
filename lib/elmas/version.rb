@@ -2,7 +2,7 @@ module Elmas
   class Version
     MAJOR = 2
     MINOR = 4
-    PATCH = 1
+    PATCH = 2
 
     class << self
       def to_s

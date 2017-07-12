@@ -1,3 +1,6 @@
+## 2.4.2
+- Add thread safety
+
 ## 2.4.1
 
 - Update gem versions of mechanize and faraday
