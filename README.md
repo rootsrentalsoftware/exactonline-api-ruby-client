@@ -75,11 +75,8 @@ So combining all of this results in
 Elmas.configure do |config|
   config.client_id = ENV['CLIENT_ID']
   config.client_secret = ENV['CLIENT_SECRET']
-end
-Elmas.configure do |config|
+  config.redirect_uri = ENV['REDIRECT_URI']
   config.access_token = Elmas.authorize(ENV['EXACT_USER_NAME'], ENV['EXACT_PASSWORD']).access_token
-end
-Elmas.configure do |config|
   config.division = Elmas.authorize_division
 end
 ```
