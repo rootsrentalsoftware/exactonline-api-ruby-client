@@ -10,7 +10,7 @@ module Elmas
     end
 
     def mandatory_attributes
-      [:journal, :ordered_by]
+      [:ordered_by]
     end
 
     def other_attributes
