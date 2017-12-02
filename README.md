@@ -7,6 +7,10 @@
 
 Elmas means diamond, but in this case it's an API wrapper for [Exact Online](https://developers.exactonline.com/). This gem was created by [@Marthyn](https://github.com/marthyn), [Hoppinger](http://www.hoppinger.com) and a few people:
 
+# DISCLAIMER
+
+Please read the Authorization part of this readme before opening an issue about it and realize it's a functionality that is only intented for debugging purposes really, or to allow App to App communication, but it's really better to CREATE YOUR OWN authentication/refresh/authorization logic for your customers through the normal OAUTH path. The code in the Oauth.rb file could break any time Exact changes their login form for example. 
+
 ### Contributers
 
 * [Commuun](https://github.com/commuun)

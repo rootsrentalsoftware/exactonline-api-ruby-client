@@ -1,3 +1,11 @@
+## 2.5.0
+- Fix some stuff in the Oauth logic (thanks @michielverkoijen)
+- Add division class (thanks @michielverkoijen)
+- Remove mandatory attribute from SalesInvoice (thanks @michielverkoijen)
+- Add configurable logger (thanks @jdlombardozzi)
+- Add refresh token logic so you do not always have to reauthorize (thanks @jdlombardozzi)
+- Fix all rubocop issues (thanks @jdlombardozzi)
+
 ## 2.4.2
 - Add thread safety
 
