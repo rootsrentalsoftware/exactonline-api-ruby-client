@@ -14,7 +14,7 @@ module Elmas
   end
 
   class UnauthorizedException < StandardError; end
-    
+
   class InvalidAttributeException < StandardError
     def initialize(invalid_attributes)
       @invalid_attributes = invalid_attributes

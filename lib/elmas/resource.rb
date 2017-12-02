@@ -26,7 +26,7 @@ module Elmas
     def validate_attributes(attributes)
       hash = Utils.normalize_hash(attributes)
       invalid_attributes = hash.keys - valid_attributes - default_attributes
-      fail Elmas::InvalidAttributeException.new(invalid_attributes), "" if valid_attributes.any? && invalid_attributes.any?
+      raise Elmas::InvalidAttributeException.new(invalid_attributes), "" if valid_attributes.any? && invalid_attributes.any?
       hash
     end
 
@@ -97,7 +97,7 @@ module Elmas
     private
 
     def default_attributes
-      [:__metadata, :id]
+      %i[__metadata id]
     end
 
     def set_attribute(attribute, value)
