@@ -81,6 +81,7 @@ module Elmas
 
     def allow_access(agent)
       return if agent.page.uri.to_s.include?("getpostman")
+      return if agent.page.uri.to_s.include?(self.redirect_uri)
       form = agent.page.form_with(id: "PublicOAuth2Form")
       button = form.button_with(id: "AllowButton")
       agent.submit(form, button)
