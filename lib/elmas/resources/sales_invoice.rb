@@ -12,7 +12,7 @@ module Elmas
     end
 
     def mandatory_attributes
-      %i[journal ordered_by]
+      [:ordered_by]
     end
 
     def other_attributes
