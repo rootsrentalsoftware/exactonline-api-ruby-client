@@ -18,6 +18,15 @@ module Elmas
       OauthResponse.new(get_access_token(code))
     end
 
+    def refresh_authorization
+      OauthResponse.new(get_refresh_token(self.refresh_token)).tap do |response|
+        Elmas.configure do |config|
+          config.access_token = response.access_token
+          config.refresh_token = response.refresh_token
+        end
+      end
+    end
+
     def authorized?
       # Do a test call, return false if 401 or any error code
       get("/Current/Me", no_division: true)
@@ -64,6 +73,23 @@ module Elmas
       end
     end
 
+    # Return an access token from authorization via refresh token
+    def get_refresh_token(refresh_token)
+      conn = Faraday.new(url: config[:base_url]) do |faraday|
+        faraday.request :url_encoded
+        faraday.adapter Faraday.default_adapter
+      end
+
+      params = refresh_access_token_params(refresh_token)
+
+      conn.post do |req|
+        req.url "/api/oauth2/token"
+        req.body = params
+        req.headers["Accept"] = "application/json"
+        req.headers["Content-Type"] = "application/x-www-form-urlencoded"
+      end
+    end
+
     private
 
     def login(agent, user_name, password, options)
@@ -97,6 +123,15 @@ module Elmas
         grant_type: "authorization_code",
         code: code,
         redirect_uri: redirect_uri
+      }
+    end
+
+    def refresh_access_token_params(code)
+      {
+        client_id: client_id,
+        client_secret: client_secret,
+        grant_type: "refresh_token",
+        refresh_token: code,
       }
     end
   end
