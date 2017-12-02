@@ -5,7 +5,7 @@ module Elmas
     include Elmas::Resource
 
     def valid_actions
-      [:get]
+      %i[get]
     end
 
     def base_path
@@ -17,7 +17,7 @@ module Elmas
     end
 
     def other_attributes
-      [:asset_code]
+      %i[asset_code]
     end
   end
 end

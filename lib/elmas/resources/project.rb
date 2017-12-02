@@ -13,7 +13,7 @@ module Elmas
     end
 
     # https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=ProjectProjects
-    def other_attributes # rubocop:disable Metrics/MethodLength
+    def other_attributes
       %i[account account_code AccountContact account_name allow_additional_invoicing block_entry block_rebilling budgeted_amount budgeted_costs
          budgeted_hours_per_hour_type BudgetedRevenue BudgetType BudgetTypeDescription clasification classification_description code costs_amount_fc
          created creator creator_full_name customer_p_onumber description division division_name end_date fixed_price_item

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "mechanize"
 require "uri"
 require "json"
@@ -7,6 +9,7 @@ require File.expand_path("../response", __FILE__)
 
 # from https://developers.exactonline.com/#Example retrieve access token.html
 module Elmas
+  # rubocop:disable Metrics/ModuleLength
   module OAuth
     def authorize(user_name, password, options = {})
       agent = Mechanize.new
@@ -19,7 +22,7 @@ module Elmas
     end
 
     def refresh_authorization
-      OauthResponse.new(get_refresh_token(self.refresh_token)).tap do |response|
+      OauthResponse.new(get_refresh_token(refresh_token)).tap do |response|
         Elmas.configure do |config|
           config.access_token = response.access_token
           config.refresh_token = response.refresh_token
@@ -41,7 +44,7 @@ module Elmas
 
     def auto_authorize
       Elmas.configure do |config|
-        config.redirect_uri = ENV['REDIRECT_URI']
+        config.redirect_uri = ENV["REDIRECT_URI"]
         config.client_id = ENV["CLIENT_ID"]
         config.client_secret = ENV["CLIENT_SECRET"]
         config.access_token = Elmas.authorize(ENV["EXACT_USER_NAME"], ENV["EXACT_PASSWORD"]).access_token
@@ -104,7 +107,7 @@ module Elmas
 
     def allow_access(agent)
       return if agent.page.uri.to_s.include?("getpostman")
-      return if agent.page.uri.to_s.include?(self.redirect_uri)
+      return if agent.page.uri.to_s.include?(redirect_uri)
       form = agent.page.form_with(id: "PublicOAuth2Form")
       button = form.button_with(id: "AllowButton")
       agent.submit(form, button)
@@ -131,7 +134,7 @@ module Elmas
         client_id: client_id,
         client_secret: client_secret,
         grant_type: "refresh_token",
-        refresh_token: code,
+        refresh_token: code
       }
     end
   end

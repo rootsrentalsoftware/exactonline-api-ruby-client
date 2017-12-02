@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Elmas
   class CashEntry
     include Elmas::Resource
@@ -7,13 +9,13 @@ module Elmas
     end
 
     def mandatory_attributes
-      [:journal_code, :cash_entry_lines]
+      %i[journal_code cash_entry_lines]
     end
 
     def other_attributes
-      [
-        :currency, :closing_balance_FC, :entry_number,
-        :financial_period, :financial_year, :openening_balance_FC
+      %i[
+        currency closing_balance_FC entry_number
+        financial_period financial_year openening_balance_FC
       ]
     end
   end
