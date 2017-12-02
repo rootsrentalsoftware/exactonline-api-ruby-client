@@ -18,6 +18,8 @@ Elmas means diamond, but in this case it's an API wrapper for [Exact Online](htt
 * [mipmip](https://github.com/mipmip)
 * [Bramjetten](https://github.com/Bramjetten)
 * [LaurensN](https://github.com/LaurensN)
+* [jdlombardozzi](https://github.com/jdlombardozzi)
+* [michielverkoijen](https://github.com/michielverkoijen)
 
 Thanks for helping! If you want to contribute read through this readme how to!
 
