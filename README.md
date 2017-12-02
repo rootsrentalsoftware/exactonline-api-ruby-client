@@ -5,7 +5,21 @@
 
 # Elmas
 
-Elmas means diamond, but in this case it's an API wrapper for [Exact Online](https://developers.exactonline.com/).
+Elmas means diamond, but in this case it's an API wrapper for [Exact Online](https://developers.exactonline.com/). This gem was created by [@Marthyn](https://github.com/marthyn), [Hoppinger](http://www.hoppinger.com) and a few people:
+
+### Contributers
+
+* [Commuun](https://github.com/commuun)
+* [dunyakirkali](https://github.com/dunyakirkali)
+* [Korstiaan](https://github.com/korstiaan)
+* [confiks](https://github.com/confiks)
+* [Menno-de-brie](https://github.com/Menno-de-brie)
+* [Dahie](https://github.com/Dahie)
+* [mipmip](https://github.com/mipmip)
+* [Bramjetten](https://github.com/Bramjetten)
+* [LaurensN](https://github.com/LaurensN)
+
+Thanks for helping! If you want to contribute read through this readme how to!
 
 ## Installation
 
@@ -61,11 +75,8 @@ So combining all of this results in
 Elmas.configure do |config|
   config.client_id = ENV['CLIENT_ID']
   config.client_secret = ENV['CLIENT_SECRET']
-end
-Elmas.configure do |config|
+  config.redirect_uri = ENV['REDIRECT_URI']
   config.access_token = Elmas.authorize(ENV['EXACT_USER_NAME'], ENV['EXACT_PASSWORD']).access_token
-end
-Elmas.configure do |config|
   config.division = Elmas.authorize_division
 end
 ```
@@ -82,6 +93,18 @@ unless Elmas.authorized?
     config.access_token = Elmas.authorize(ENV['EXACT_USER_NAME'], ENV['EXACT_PASSWORD']).access_token
   end
 end
+```
+
+### Logger
+
+The default logger is STDOUT. A custom logger can be be configured.
+```ruby
+  dir = File.dirname("./tmp/errors.log")
+  FileUtils.mkdir_p(dir) unless File.directory?(dir)
+
+  Elmas.configure do |config|
+    config.logger = ::Logger.new("./tmp/errors.log", "daily")
+  end
 ```
 
 ## Accessing the API
@@ -258,4 +281,3 @@ When you're editing code it's advised you run guard, which watches file changes 
 
 This gem was created by [Hoppinger](http://www.hoppinger.com)
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-ruby.svg)](http://www.hoppinger.com)
