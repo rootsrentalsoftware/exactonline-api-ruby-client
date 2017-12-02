@@ -34,22 +34,22 @@ describe Elmas do
   end
 
   it "should configure a default logger when included" do
-    Elmas.logger.must_equal Elmas::CONFIG::DEFAULT_LOGGER
+    expect(Elmas.logger).to eq(Elmas::Config::DEFAULT_LOGGER)
   end
 
   it "should configure a given logger when specified" do
-    Elmas.logger.must_equal Elmas::CONFIG::DEFAULT_LOGGER
+    expect(Elmas.logger).to eq(Elmas::Config::DEFAULT_LOGGER)
     obj = ::Object.new
     Elmas.configure { |config| config.logger = obj }
-    Foobar.logger.must_equal obj
+    expect(Elmas.logger).to eq(obj)
   end
 
   it "should reset logger configuration to default" do
-    Elmas.logger.must_equal Elmas::CONFIG::DEFAULT_LOGGER
+    expect(Elmas.logger).to eq(Elmas::Config::DEFAULT_LOGGER)
     obj = ::Object.new
     Elmas.configure { |config| config.logger = obj }
-    Foobar.logger.must_equal obj
+    expect(Elmas.logger).to eq(obj)
     Elmas.reset
-    Elmas.logger.must_equal Elmas::CONFIG::DEFAULT_LOGGER
+    expect(Elmas.logger).to eq(Elmas::Config::DEFAULT_LOGGER)
   end
 end
