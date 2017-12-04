@@ -29,8 +29,8 @@ module Elmas
         document_layout email_creation_error email_creation_success email_layout
         extra_text invoice_date postbox_message_creation_error
         postbox_message_creation_success postbox_sender reporting_period
-        reporting_year send_email_to_customer send_invoice_to_customer_postbox
-        send_output_based_on_account
+        reporting_year send_email_to_customer sender_email_address
+        send_invoice_to_customer_postbox send_output_based_on_account
       ]
     end
   end
