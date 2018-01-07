@@ -3,6 +3,16 @@ module Elmas
     include Elmas::Resource
     include Elmas::SharedSalesAttributes
 
+    # For some reason the Exact API for GoodsDelivery requires us to specify
+    # the fields we want returned.  This isn't required for other calls.  :/
+    # We get around this by specifying a wildcard on the $select param.
+    def find_all(options = {})
+      @order_by = options[:order_by]
+      @select = options[:select] ||= ['*']
+      response = get(uri([:order, :select]))
+      response.results if response
+    end
+
     def base_path
       "salesorder/GoodsDeliveries"
     end
