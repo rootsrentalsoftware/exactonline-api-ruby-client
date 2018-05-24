@@ -1,3 +1,9 @@
+## 2.6.0
+- Add main atttribute to bank account
+- Add address object (thanks @chicks)
+- Add user model (thanks @michielverkoijen)
+- Add couple missing attrbutes (thanks @michielverkoijen)
+
 ## 2.5.0
 - Fix some stuff in the Oauth logic (thanks @michielverkoijen)
 - Add division class (thanks @michielverkoijen)
