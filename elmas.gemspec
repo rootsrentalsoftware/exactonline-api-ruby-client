@@ -37,3 +37,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov-rcov"
   spec.add_development_dependency "webmock"
 end
+# rubocop:enable Metrics/BlockLength
