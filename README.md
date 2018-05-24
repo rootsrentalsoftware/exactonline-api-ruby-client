@@ -9,7 +9,7 @@ Elmas means diamond, but in this case it's an API wrapper for [Exact Online](htt
 
 # DISCLAIMER
 
-__As of 25th of May, 2FA will be mandatory for all Exact Online accounts. Therefor the auto authorize method with which you could simulate and App 2 App connection will not work anymore. Hoppinger is working on a new solution. The methods will stay available but probably won't work and will show a deprecation warning. [Read more about it here](https://support.exactonline.com/community/s/knowledge-base#All-All-HNO-Concept-general-security-gen-auth-totpc)__
+__As of 25th of May, 2FA will be mandatory for all Exact Online accounts. Therefor the auto authorize method with which you could simulate an App 2 App connection will not work anymore. Hoppinger is working on a new solution. The methods will stay available but probably won't work and will show a deprecation warning. [Read more about it here](https://support.exactonline.com/community/s/knowledge-base#All-All-HNO-Concept-general-security-gen-auth-totpc)__
 
 ### Contributers
 
