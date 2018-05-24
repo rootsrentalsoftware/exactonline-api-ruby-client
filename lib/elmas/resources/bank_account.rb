@@ -25,7 +25,7 @@ module Elmas
         bank_account bank_description
         bank_name BIC_code description
         division format IBAN type
-        type_description
+        type_description main
       ]
     end
   end
