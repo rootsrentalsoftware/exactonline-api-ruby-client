@@ -5,11 +5,11 @@
 
 # Elmas
 
-Elmas means diamond, but in this case it's an API wrapper for [Exact Online](https://developers.exactonline.com/). This gem was created by [@Marthyn](https://github.com/marthyn), [Hoppinger](http://www.hoppinger.com) and a few people:
+Elmas means diamond, but in this case it's an API wrapper for [Exact Online](https://developers.exactonline.com/). This gem was created by [@Marthyn](https://github.com/marthyn), [Hoppinger](http://www.hoppinger.com) and a few people.
 
 # DISCLAIMER
 
-Please read the Authorization part of this readme before opening an issue about it and realize it's a functionality that is only intented for debugging purposes really, or to allow App to App communication, but it's really better to CREATE YOUR OWN authentication/refresh/authorization logic for your customers through the normal OAUTH path. The code in the Oauth.rb file could break any time Exact changes their login form for example. 
+__As of 25th of May, 2FA will be mandatory for all Exact Online accounts. Therefor the auto authorize method with which you could simulate and App 2 App connection will not work anymore. Hoppinger is working on a new solution. The methods will stay available but probably won't work and will show a deprecation warning. [Read more about it here](https://support.exactonline.com/community/s/knowledge-base#All-All-HNO-Concept-general-security-gen-auth-totpc)__
 
 ### Contributers
 
@@ -56,48 +56,6 @@ Elmas.configure do |config|
   config.client_id = ENV['CLIENT_ID']
   config.client_secret = ENV['CLIENT_SECRET']
   config.redirect_uri = ENV['REDIRECT_URI']
-end
-```
-
-If you only use the api within your app without exposing it to users you can chose
-to automatically login with your credentials. So this is for example when you have a
-rake task that shoots in invoices.
-Do not use this when you let other users login. Build your own OAUTH flow and then set the access token
-before the api request.
-```ruby
-Elmas.configure do |config|
-  config.access_token = Elmas.authorize(ENV['EXACT_USER_NAME'], ENV['EXACT_PASSWORD']).access_token
-end
-```
-Now you're authorized you can set your current division
-```ruby
-Elmas.configure do |config|
-  config.division = Elmas.authorize_division
-end
-```
-
-So combining all of this results in
-```ruby
-Elmas.configure do |config|
-  config.client_id = ENV['CLIENT_ID']
-  config.client_secret = ENV['CLIENT_SECRET']
-  config.redirect_uri = ENV['REDIRECT_URI']
-  config.access_token = Elmas.authorize(ENV['EXACT_USER_NAME'], ENV['EXACT_PASSWORD']).access_token
-  config.division = Elmas.authorize_division
-end
-```
-
-You should make sure that when you do a request you're authorized. So build in something like the
-following code into your application, that checks wether you're authorized and otherwise authorizes
-again.
-```ruby
-#The client will now be authorized for 10 minutes,
-# if there are requests the time will be reset,
-# otherwise authorization should be called again.
-unless Elmas.authorized?
-  Elmas.configure do |config|
-    config.access_token = Elmas.authorize(ENV['EXACT_USER_NAME'], ENV['EXACT_PASSWORD']).access_token
-  end
 end
 ```
 

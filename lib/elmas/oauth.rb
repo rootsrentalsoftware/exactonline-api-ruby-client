@@ -8,10 +8,15 @@ require File.expand_path("../utils", __FILE__)
 require File.expand_path("../response", __FILE__)
 
 # from https://developers.exactonline.com/#Example retrieve access token.html
+
+# This whole class is going to be replaced due to Exact Online's new policies.
+# https://support.exactonline.com/community/s/knowledge-base#All-All-HNO-Concept-general-security-gen-auth-totpc
+
 module Elmas
   # rubocop:disable Metrics/ModuleLength
   module OAuth
     def authorize(user_name, password, options = {})
+      warn "[DEPRECATION] `authorize` is deprecated. Please implement your own authorization methods instead."
       agent = Mechanize.new
 
       login(agent, user_name, password, options)
@@ -22,6 +27,7 @@ module Elmas
     end
 
     def refresh_authorization
+      warn "[DEPRECATION] `refresh_authorization` is deprecated. Please implement your own authorization methods instead."
       OauthResponse.new(get_refresh_token(refresh_token)).tap do |response|
         Elmas.configure do |config|
           config.access_token = response.access_token
@@ -43,6 +49,7 @@ module Elmas
     end
 
     def auto_authorize
+      warn "[DEPRECATION] `auto_authorize` is deprecated. Please implement your own authorization methods instead."
       Elmas.configure do |config|
         config.redirect_uri = ENV["REDIRECT_URI"]
         config.client_id = ENV["CLIENT_ID"]
