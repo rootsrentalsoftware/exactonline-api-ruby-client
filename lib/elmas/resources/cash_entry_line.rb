@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Elmas
-  class BankEntryLine < Elmas::BaseEntryLine
+  class CashEntryLine < Elmas::BaseEntryLine
     # A sales entry line belongs to a sales entry
     include Elmas::Resource
 
     def base_path
-      "financialtransaction/BankEntryLines"
+      "financialtransaction/CashEntryLines"
     end
 
     def other_attributes

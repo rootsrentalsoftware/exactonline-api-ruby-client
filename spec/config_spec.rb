@@ -32,4 +32,24 @@ describe Elmas do
       expect(Elmas.config[:base_url]).to eq 'foo'
     end.join
   end
+
+  it "should configure a default logger when included" do
+    expect(Elmas.logger).to eq(Elmas::Config::DEFAULT_LOGGER)
+  end
+
+  it "should configure a given logger when specified" do
+    expect(Elmas.logger).to eq(Elmas::Config::DEFAULT_LOGGER)
+    obj = ::Object.new
+    Elmas.configure { |config| config.logger = obj }
+    expect(Elmas.logger).to eq(obj)
+  end
+
+  it "should reset logger configuration to default" do
+    expect(Elmas.logger).to eq(Elmas::Config::DEFAULT_LOGGER)
+    obj = ::Object.new
+    Elmas.configure { |config| config.logger = obj }
+    expect(Elmas.logger).to eq(obj)
+    Elmas.reset
+    expect(Elmas.logger).to eq(Elmas::Config::DEFAULT_LOGGER)
+  end
 end

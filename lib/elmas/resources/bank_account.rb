@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Elmas
   class BankAccount
     # An account needs a name
     include Elmas::Resource
 
     def valid_actions
-      [:get]
+      %i[get]
     end
 
     def base_path
@@ -12,26 +14,18 @@ module Elmas
     end
 
     def mandatory_attributes
-      [:account]
+      %i[account]
     end
 
-    # https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=CRMAccounts
-    def other_attributes # rubocop:disable Metrics/MethodLength
-      [
-        :id,
-        :account,
-        :account_name,
-        :bank,
-        :bank_account,
-        :bank_description,
-        :bank_name,
-        :BIC_code,
-        :description,
-        :division,
-        :format,
-        :IBAN,
-        :type,
-        :type_description
+    # https//start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=CRMAccounts
+    # rubocopdisable Metrics/MethodLength
+    def other_attributes
+      %i[
+        id account account_name bank
+        bank_account bank_description
+        bank_name BIC_code description
+        division format IBAN type
+        type_description main
       ]
     end
   end

@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require "elmas/version"
 require "elmas/api"
 require "elmas/config"
 require "elmas/response"
 require "elmas/client"
-require "elmas/log"
 require "elmas/resource"
 require "elmas/result_set"
 require "elmas/sanitizer"
@@ -47,10 +48,10 @@ require "elmas/resources/general_journal_entry_line"
 require "elmas/resources/payment_condition"
 require "elmas/resources/goods_delivery"
 require "elmas/resources/goods_delivery_line"
+require "elmas/resources/division"
 
 module Elmas
   extend Config
-  extend Log
 
   def self.client(options = {})
     Elmas::Client.new(options)
@@ -65,5 +66,13 @@ module Elmas
   # Delegate to Elmas::Client
   def self.respond_to?(method, include_all = false)
     client.respond_to?(method, include_all) || super
+  end
+
+  def self.info(msg)
+    logger.info(msg)
+  end
+
+  def self.error(msg)
+    logger.error(msg)
   end
 end
