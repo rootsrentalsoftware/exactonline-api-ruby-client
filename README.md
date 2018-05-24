@@ -59,6 +59,22 @@ Elmas.configure do |config|
 end
 ```
 
+You then have to retrieve an access token for the user you want to login with. You can setup a user facing OAUTH2 flow or set the `access_token` and/or refresh token on the go.
+
+```ruby
+Elmas.configure do |config|
+  config.access_token = "42"
+  config.refresh_token = "42"
+end
+```
+
+Once you've set your access tokens you should be able to do requests. You'll need a division number, you can retrieve that with the following line of code:
+
+```
+get("/Current/Me", no_division: true).results.first.current_division
+```
+
+
 ### Logger
 
 The default logger is STDOUT. A custom logger can be be configured.
