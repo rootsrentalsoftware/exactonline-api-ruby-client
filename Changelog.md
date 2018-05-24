@@ -1,5 +1,8 @@
+## 3.0.0
+- Deprecating auto authorize due to changes to login flow by Exact. https://support.exactonline.com/community/s/knowledge-base#All-All-HNO-Concept-general-security-gen-auth-totpc
+
 ## 2.6.0
-- Add main atttribute to bank account
+- Add main atttribute to bank account (thanks @Korstiaan)
 - Add address object (thanks @chicks)
 - Add user model (thanks @michielverkoijen)
 - Add couple missing attrbutes (thanks @michielverkoijen)
