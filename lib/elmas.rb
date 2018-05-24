@@ -49,6 +49,7 @@ require "elmas/resources/payment_condition"
 require "elmas/resources/goods_delivery"
 require "elmas/resources/goods_delivery_line"
 require "elmas/resources/division"
+require "elmas/resources/user"
 
 module Elmas
   extend Config
