@@ -23,9 +23,9 @@ module Elmas
       %i[
         id account account_name bank
         bank_account bank_description
-        bank_name BIC_code description
-        division format IBAN type
-        type_description main
+        bank_account_holder_name BIC_code
+        description division format IBAN
+        type type_description main
       ]
     end
   end
