@@ -9,7 +9,11 @@ module Elmas
     end
 
     def message
-      "code #{@response.status}: #{@parsed.error_message}"
+      if @parsed.error_message.present?
+        "code #{@response.status}: #{@parsed.error_message}"
+      else
+        @response.inspect
+      end
     end
   end
 

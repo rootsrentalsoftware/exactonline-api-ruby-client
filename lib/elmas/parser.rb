@@ -7,9 +7,8 @@ module Elmas
     def initialize(json)
       @parsed_json = JSON.parse(json)
     rescue JSON::ParserError => e
-      Elmas.error "There was an error parsing the response"
-      Elmas.error "#{e.class}: #{e.message}"
-      @error_message = "#{e.class}: #{e.message}"
+      @parsed_json = ""
+      @error_message = ""
     end
 
     def results
