@@ -1,3 +1,8 @@
+## 3.0.1
+- Change of bank_name to bank_account_holder_name
+- Readd journal because although not required, it should still be possible to set
+- Add date to BaseEntryLine, which is parent for GeneralJournalEntryLine
+
 ## 3.0.0
 - Deprecating auto authorize due to changes to login flow by Exact. https://support.exactonline.com/community/s/knowledge-base#All-All-HNO-Concept-general-security-gen-auth-totpc
 - Upgrade Ruby Version.
