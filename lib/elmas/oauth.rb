@@ -15,30 +15,10 @@ require File.expand_path("../response", __FILE__)
 module Elmas
   # rubocop:disable Metrics/ModuleLength
   module OAuth
-    def authorize(user_name, password, options = {})
-      warn "[DEPRECATION] `authorize` is deprecated. Please implement your own authorization methods instead."
-      agent = Mechanize.new
-
-      login(agent, user_name, password, options)
-      allow_access(agent)
-
-      code = URI.unescape(agent.page.uri.query.split("=").last)
-      OauthResponse.new(get_access_token(code))
-    end
-
-    def refresh_authorization
-      warn "[DEPRECATION] `refresh_authorization` is deprecated. Please implement your own authorization methods instead."
-      OauthResponse.new(get_refresh_token(refresh_token)).tap do |response|
-        Elmas.configure do |config|
-          config.access_token = response.access_token
-          config.refresh_token = response.refresh_token
-        end
-      end
-    end
-
     def authorized?
       # Do a test call, return false if 401 or any error code
-      get("/Current/Me", no_division: true)
+      response = Elmas.get("/Current/Me", no_division: true)
+      response.results.first.present?
     rescue BadRequestException
       Elmas.error "Not yet authorized"
       return false
@@ -46,17 +26,6 @@ module Elmas
 
     def authorize_division
       get("/Current/Me", no_division: true).results.first.current_division
-    end
-
-    def auto_authorize
-      warn "[DEPRECATION] `auto_authorize` is deprecated. Please implement your own authorization methods instead."
-      Elmas.configure do |config|
-        config.redirect_uri = ENV["REDIRECT_URI"]
-        config.client_id = ENV["CLIENT_ID"]
-        config.client_secret = ENV["CLIENT_SECRET"]
-        config.access_token = Elmas.authorize(ENV["EXACT_USER_NAME"], ENV["EXACT_PASSWORD"]).access_token
-        config.division = Elmas.authorize_division
-      end
     end
 
     # Return URL for OAuth authorization
@@ -102,24 +71,6 @@ module Elmas
 
     private
 
-    def login(agent, user_name, password, options)
-      # Login
-      agent.get(authorize_url(options)) do |page|
-        form = page.forms.first
-        form["UserNameField"] = user_name
-        form["PasswordField"] = password
-        form.click_button
-      end
-    end
-
-    def allow_access(agent)
-      return if agent.page.uri.to_s.include?("getpostman")
-      return if agent.page.uri.to_s.include?(redirect_uri)
-      form = agent.page.form_with(id: "PublicOAuth2Form")
-      button = form.button_with(id: "AllowButton")
-      agent.submit(form, button)
-    end
-
     def authorization_params
       {
         client_id: client_id
@@ -145,9 +96,7 @@ module Elmas
       }
     end
   end
-end
 
-module Elmas
   class OauthResponse < Response
     def body
       JSON.parse(@response.body)
