@@ -1,3 +1,7 @@
+## 3.1.0
+- Remove deprecated methods
+- Show more insight into BadRequestExceptions
+
 ## 3.0.1
 - Change of bank_name to bank_account_holder_name
 - Readd journal because although not required, it should still be possible to set
