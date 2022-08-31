@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Elmas
   class GoodsDelivery
     include Elmas::Resource
@@ -8,9 +10,9 @@ module Elmas
     # We get around this by specifying a wildcard on the $select param.
     def find_all(options = {})
       @order_by = options[:order_by]
-      @select = options[:select] ||= ['*']
-      response = get(uri([:order, :select]))
-      response.results if response
+      @select = options[:select] ||= ["*"]
+      response = get(uri(%i[order select]))
+      response&.results
     end
 
     def base_path
@@ -23,12 +25,12 @@ module Elmas
 
     def other_attributes
       SHARED_SALES_ATTRIBUTES.inject(
-        [
-          :delivery_account, :delivery_account_code, :delivery_account_name,
-          :delivery_address, :delivery_contact, :delivery_contact_person_full_name,
-          :delivery_date, :delivery_number,
-          :shipping_method, :shipping_method_code, :shipping_method_description,
-          :tracking_number, :warehouse, :warehouse_code, :warehouse_description
+        %i[
+          delivery_account delivery_account_code delivery_account_name
+          delivery_address delivery_contact delivery_contact_person_full_name
+          delivery_date delivery_number
+          shipping_method shipping_method_code shipping_method_description
+          tracking_number warehouse warehouse_code warehouse_description
         ],
         :<<
       )

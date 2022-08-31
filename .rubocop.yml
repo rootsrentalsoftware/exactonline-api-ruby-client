@@ -50,7 +50,14 @@ Metrics/ParameterLists:
 
 Metrics/PerceivedComplexity:
   Max: 7
+
+Naming/VariableNumber:
+  Enabled: false
 Style/PerlBackrefs:
+  Enabled: false
+Style/OptionalBooleanParameter:
+  Enabled: false
+Style/MissingRespondToMissing:
   Enabled: false
 Lint/AmbiguousOperator:
   Enabled: false

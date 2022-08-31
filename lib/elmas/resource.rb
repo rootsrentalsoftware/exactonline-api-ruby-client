@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require File.expand_path("../utils", __FILE__)
-require File.expand_path("../exception", __FILE__)
-require File.expand_path("../uri", __FILE__)
-require File.expand_path("../sanitizer", __FILE__)
+require File.expand_path("utils", __dir__)
+require File.expand_path("exception", __dir__)
+require File.expand_path("uri", __dir__)
+require File.expand_path("sanitizer", __dir__)
 
 module Elmas
   module Resource
@@ -41,6 +41,7 @@ module Elmas
 
     def find
       return nil unless id?
+
       response = get(uri([:id]))
       response&.results&.first
     end
@@ -63,15 +64,17 @@ module Elmas
       attributes_to_submit = sanitize
       if valid?
         return @response = Elmas.post(base_path, params: attributes_to_submit) unless id?
-        return @response = Elmas.put(basic_identifier_uri, params: attributes_to_submit)
+
+        @response = Elmas.put(basic_identifier_uri, params: attributes_to_submit)
       else
         Elmas.error("Invalid Resource #{self.class.name}, attributes: #{@attributes.inspect}, mandatory_attributes: #{mandatory_attributes}")
-        raise Elmas::ValidationException.new(@invalid_attributes)
+        raise Elmas::ValidationException, @invalid_attributes
       end
     end
 
     def delete
       return nil unless id?
+
       Elmas.delete(basic_identifier_uri)
     end
 

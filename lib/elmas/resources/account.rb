@@ -39,5 +39,6 @@ module Elmas
         VAT_liability VAT_number website
       ]
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end

@@ -66,6 +66,7 @@ module Elmas
 
       def apply_filters
         return unless @filters
+
         @filters.each do |filter|
           @query << base_filter(filter)
         end

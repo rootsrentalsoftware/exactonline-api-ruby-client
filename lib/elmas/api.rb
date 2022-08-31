@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require File.expand_path("../request", __FILE__)
-require File.expand_path("../config", __FILE__)
-require File.expand_path("../oauth", __FILE__)
+require File.expand_path("request", __dir__)
+require File.expand_path("config", __dir__)
+require File.expand_path("oauth", __dir__)
 
 module Elmas
   # @private

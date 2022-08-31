@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require File.expand_path("../parser", __FILE__)
-require File.expand_path("../utils", __FILE__)
+require File.expand_path("parser", __dir__)
+require File.expand_path("utils", __dir__)
 
 module Elmas
   class Response

@@ -14,7 +14,7 @@ module Elmas
 
     def other_attributes
       %i[
-        serial_number asset cost_center cost_unit  notes
+        serial_number asset cost_center cost_unit notes
         project quantity serial_number subscription tracking_number
         VAT_amount_FC VAT_base_amount_DC VAT_base_amount_FC VAT_code
         VAT_percentage account

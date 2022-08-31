@@ -20,9 +20,9 @@ module Elmas
 
     def self.camelize(word, uppercase_first_letter = true)
       if uppercase_first_letter
-        word.to_s.gsub(%r{/\/(.?)/}) { "::" + $1.upcase }.gsub(/(^|_)(.)/) { $2.upcase }
+        word.to_s.gsub(%r{//(.?)/}) { "::#{$1.upcase}" }.gsub(/(^|_)(.)/) { $2.upcase }
       else
-        word[0] + Utils.camelize(word)[1..-1]
+        word[0] + Utils.camelize(word)[1..]
       end
     end
 
@@ -39,7 +39,7 @@ module Elmas
     end
 
     def self.normalize_hash(hash)
-      Hash[hash.map { |k, v| [Utils.normalize_hash_key(k), v] }] if hash
+      hash&.transform_keys { |k| Utils.normalize_hash_key(k) }
     end
 
     def self.parse_key(key)

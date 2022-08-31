@@ -32,5 +32,6 @@ module Elmas
         sales_vat_code search_code security_level start_date unit
       ]
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end
