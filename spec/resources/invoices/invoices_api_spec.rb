@@ -12,7 +12,15 @@ describe Elmas::SalesInvoice do
   end
 
   it "is valid with certain attributes" do
-    sales_invoice = Elmas::SalesInvoice.new(journal:"my-awesome-journal", ordered_by: "1230")
+    sales_invoice = Elmas::SalesInvoice.new(
+      journal:"my-awesome-journal",
+      ordered_by: "1230",
+      invoice_date: Time.now,
+      order_date: Time.now,
+      order_number: 123,
+      type: "A",
+      your_ref: "abc"
+    )
     expect(sales_invoice.valid?).to eq(true)
   end
 

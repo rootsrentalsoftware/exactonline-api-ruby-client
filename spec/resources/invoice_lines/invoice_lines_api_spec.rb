@@ -12,7 +12,15 @@ describe Elmas::SalesInvoiceLine do
   end
 
   it "is valid with certain attributes" do
-    sales_invoice_line = Elmas::SalesInvoiceLine.new(invoice_ID:"627362", item: "23873")
+    sales_invoice_line = Elmas::SalesInvoiceLine.new(
+      invoice_ID:"627362",
+      item: "23873",
+      quantity: 1,
+      GL_account: "foobar",
+      description: "description",
+      VAT_code: 0,
+      unit_price: 1.1
+    )
     expect(sales_invoice_line.valid?).to eq(true)
   end
 
