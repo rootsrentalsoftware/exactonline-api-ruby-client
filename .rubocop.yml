@@ -59,5 +59,7 @@ Style/OptionalBooleanParameter:
   Enabled: false
 Style/MissingRespondToMissing:
   Enabled: false
+Style/HashSyntax:
+  Enabled: false
 Lint/AmbiguousOperator:
   Enabled: false

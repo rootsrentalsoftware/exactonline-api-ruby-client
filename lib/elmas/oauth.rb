@@ -72,24 +72,24 @@ module Elmas
 
     def authorization_params
       {
-        client_id:
+        client_id: client_id
       }
     end
 
     def access_token_params(code)
       {
-        client_id:,
-        client_secret:,
+        client_id: client_id,
+        client_secret: client_secret,
         grant_type: "authorization_code",
-        code:,
-        redirect_uri:
+        code: code,
+        redirect_uri: redirect_uri
       }
     end
 
     def refresh_access_token_params(code)
       {
-        client_id:,
-        client_secret:,
+        client_id: client_id,
+        client_secret: client_secret,
         grant_type: "refresh_token",
         refresh_token: code
       }
