@@ -47,14 +47,14 @@ describe Elmas::GLAccount do
     end
 
     it "should apply given filters for find_by" do
-      expect(Elmas).to receive(:get).with("financial/GLAccounts?$filter=Code+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("financial/GLAccounts?$filter=Code eq '1223'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:code, :id])
     end
   end
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("financial/GLAccounts?$orderby=Code&$filter=Code+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("financial/GLAccounts?$orderby=Code&$filter=Code eq '1223'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:code, :id], order_by: :code)
     end
 

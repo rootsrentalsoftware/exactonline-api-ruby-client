@@ -40,14 +40,14 @@ describe Elmas::DocumentAttachment do
     end
 
     it "should apply given filters for find_by" do
-      expect(Elmas).to receive(:get).with("documents/DocumentAttachments?$filter=FileName+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("documents/DocumentAttachments?$filter=FileName eq '1223'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:file_name, :id])
     end
   end
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("documents/DocumentAttachments?$orderby=FileName&$filter=FileName+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("documents/DocumentAttachments?$orderby=FileName&$filter=FileName eq '1223'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:file_name, :id], order_by: :file_name)
     end
 

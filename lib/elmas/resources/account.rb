@@ -10,7 +10,7 @@ module Elmas
     end
 
     def mandatory_attributes
-      %i[name]
+      %i[name code email status type]
     end
 
     # https//start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=CRMAccounts
@@ -20,10 +20,10 @@ module Elmas
         accountant account_manager activity_sector
         activity_sub_sector address_line1 address_line2
         address_line3 blocked business_type can_drop_ship
-        chamber_of_commerce city code code_at_supplier
+        chamber_of_commerce city code_at_supplier
         company_size consolidation_scenario controlled_date
         cost_paid country credit_line_purchase credit_line_sales
-        discount_purchase discount_sales email end_date fax
+        discount_purchase discount_sales end_date fax
         intra_stat_area intra_stat_delivery_term intra_stat_system
         intra_stat_transaction_a intra_stat_transaction_b
         intra_stat_transport_method invoice_acount invoice_attachment_type
@@ -35,7 +35,7 @@ module Elmas
         purchase_lead_days purchase_VAT_code recipient_of_commissions
         remarks reseller sales_currency sales_tax_schedule sales_VAT_code
         search_code security_level seperate_inv_per_project seperate_inv_per_subscription
-        shipping_lead_days shipping_method start_date state status
+        shipping_lead_days shipping_method start_date state
         VAT_liability VAT_number website
       ]
     end

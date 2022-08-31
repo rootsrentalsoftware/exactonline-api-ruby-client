@@ -20,8 +20,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "activeresource"
   spec.add_dependency "activesupport"
-  spec.add_dependency "faraday", [">= 0.12.1"]
-  spec.add_dependency "mechanize", ">= 2.7.5"
+  spec.add_dependency "faraday"
+  spec.add_dependency "mechanize"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "dotenv"
@@ -31,10 +31,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "mutant-rspec"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
-  spec.add_development_dependency "ruby_dep"
   spec.add_development_dependency "rubycritic"
-  spec.add_development_dependency "simplecov"
-  spec.add_development_dependency "simplecov-rcov"
   spec.add_development_dependency "webmock"
+  spec.add_development_dependency "pry"
 end
 # rubocop:enable Metrics/BlockLength

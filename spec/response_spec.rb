@@ -62,11 +62,11 @@ describe Elmas::Response do
   }
 
   let(:good_response) {
-    Faraday::Response.new(body: sample_json, status: 200)
+    Faraday::Response.new(status: 200, body: sample_json)
   }
 
   let(:unkown_class_response) {
-    Faraday::Response.new(body: unknown_class_json, status: 200)
+    Faraday::Response.new(status: 200, body: unknown_class_json)
   }
 
   let(:not_found_response) {

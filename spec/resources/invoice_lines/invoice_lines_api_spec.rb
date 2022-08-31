@@ -30,19 +30,19 @@ describe Elmas::SalesInvoiceLine do
     end
 
     it "should apply given filters for find_by" do
-      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoiceLines?$filter=Item+eq+'22'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoiceLines?$filter=Item eq '22'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:item, :id])
     end
 
     it "should apply greater-than filters" do
       resource = Elmas::SalesInvoiceLine.new(net_price: { gt: 5 })
-      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoiceLines?$filter=NetPrice+gt+5")
+      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoiceLines?$filter=NetPrice gt 5")
       resource.find_by(filters: [:net_price])
     end
 
     it "should apply less-than filters" do
       resource = Elmas::SalesInvoiceLine.new(net_price: { lt: 5 })
-      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoiceLines?$filter=NetPrice+lt+5")
+      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoiceLines?$filter=NetPrice lt 5")
       resource.find_by(filters: [:net_price])
     end
   end

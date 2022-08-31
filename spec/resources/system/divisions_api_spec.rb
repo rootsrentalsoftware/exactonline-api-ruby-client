@@ -30,7 +30,7 @@ describe Elmas::Division do
 
     it "should apply given filters for find_by" do
       resource = Elmas::Division.new(id: "12abcdef-1234-1234-1234-123456abcdef")
-      expect(Elmas).to receive(:get).with("system/Divisions?$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("system/Divisions?$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:id])
     end
   end

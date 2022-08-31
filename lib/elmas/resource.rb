@@ -51,9 +51,8 @@ module Elmas
     end
 
     def valid?
-      mandatory_attributes.all? do |attribute|
-        @attributes.key? attribute
-      end
+      @invalid_attributes = mandatory_attributes - @attributes.keys
+      @invalid_attributes.none?
     end
 
     def id?
@@ -66,8 +65,8 @@ module Elmas
         return @response = Elmas.post(base_path, params: attributes_to_submit) unless id?
         return @response = Elmas.put(basic_identifier_uri, params: attributes_to_submit)
       else
-        Elmas.error("Invalid Resource #{self.class.name}, attributes: #{@attributes.inspect}")
-        Elmas::Response.new(Faraday::Response.new(status: 400, body: "Invalid Request"))
+        Elmas.error("Invalid Resource #{self.class.name}, attributes: #{@attributes.inspect}, mandatory_attributes: #{mandatory_attributes}")
+        raise Elmas::ValidationException.new(@invalid_attributes)
       end
     end
 

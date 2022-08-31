@@ -1,14 +1,6 @@
-require 'simplecov'
-require 'simplecov-rcov'
-SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
-SimpleCov.start do
-  add_group 'Elmas', 'lib/elmas'
-  add_group 'Faraday Middleware', 'lib/faraday'
-  add_group 'Specs', 'spec'
-end
-
 require File.expand_path('../../lib/elmas', __FILE__)
 
+require 'pry'
 require 'rspec'
 require 'webmock/rspec'
 RSpec.configure do |config|

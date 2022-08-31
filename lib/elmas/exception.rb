@@ -18,4 +18,15 @@ module Elmas
   end
 
   class UnauthorizedException < StandardError; end
+
+  class ValidationException < StandardError
+    def initialize(invalid_attributes)
+      @invalid_attributes = invalid_attributes
+      super(message)
+    end
+
+    def message
+      "The following attributes need to be present: #{@invalid_attributes.inspect}"
+    end
+  end
 end

@@ -24,7 +24,15 @@ describe Elmas::BankEntryLine do
 
   #customer journal salesentrylines
   it "is valid with mandatory attributes" do
-    bank_entry_line = Elmas::BankEntryLine.new(amount_FC: "23", entry_ID: "23299ask-2233", GL_account: "sdjkj29")
+    bank_entry_line = Elmas::BankEntryLine.new(
+      amount_FC: "23",
+      entry_ID: "23299ask-2233",
+      GL_account: "sdjkj29",
+      account: "123",
+      description: "foobar",
+      our_ref: "123",
+      date: Time.now
+    )
     expect(bank_entry_line.valid?).to eq(true)
   end
 
@@ -47,14 +55,14 @@ describe Elmas::BankEntryLine do
     end
 
     it "should apply given filters for find_by" do
-      expect(Elmas).to receive(:get).with("financialtransaction/BankEntryLines?$filter=OurRef+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("financialtransaction/BankEntryLines?$filter=OurRef eq '1223'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:our_ref, :id])
     end
   end
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("financialtransaction/BankEntryLines?$orderby=OurRef&$filter=OurRef+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("financialtransaction/BankEntryLines?$orderby=OurRef&$filter=OurRef eq '1223'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:our_ref, :id], order_by: :our_ref)
     end
 

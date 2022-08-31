@@ -4,10 +4,7 @@ Documentation:
 Lint/UriEscapeUnescape:
   Enabled: false
 
-NAming/FileName:
-  Enabled: false
-
-Style/MethodMissing:
+Naming/FileName:
   Enabled: false
 
 StringLiterals:
@@ -17,6 +14,7 @@ AllCops:
   Include:
     - '**/Rakefile'
     - '**/config.ru'
+    - 'lib/**/*'
   Exclude:
     - 'db/**/*'
     - 'tmp/**/*'
@@ -55,6 +53,4 @@ Metrics/PerceivedComplexity:
 Style/PerlBackrefs:
   Enabled: false
 Lint/AmbiguousOperator:
-  Enabled: false
-Rails/Delegate:
   Enabled: false
