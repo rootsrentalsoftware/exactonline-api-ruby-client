@@ -31,6 +31,7 @@ describe Elmas::SalesEntryLine do
   it "is not valid without mandatory attributes" do
     sales_entry_line = Elmas::SalesEntryLine.new
     expect(sales_entry_line.valid?).to eq(false)
+    expect { sales_entry_line.save }.to raise_error(Elmas::ValidationException)
   end
 
   let(:resource) { resource = Elmas::SalesEntryLine.new(id: "12abcdef-1234-1234-1234-123456abcdef", serial_number: "1223") }
@@ -47,14 +48,14 @@ describe Elmas::SalesEntryLine do
     end
 
     it "should apply given filters for find_by" do
-      expect(Elmas).to receive(:get).with("salesentry/SalesEntryLines?$filter=SerialNumber+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("salesentry/SalesEntryLines?$filter=SerialNumber eq '1223'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:serial_number, :id])
     end
   end
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("salesentry/SalesEntryLines?$orderby=SerialNumber&$filter=SerialNumber+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("salesentry/SalesEntryLines?$orderby=SerialNumber&$filter=SerialNumber eq '1223'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:serial_number, :id], order_by: :serial_number)
     end
 

@@ -11,6 +11,7 @@ module Elmas
         to_submit = {}
         @attributes.each do |key, value|
           next if key == :id || !valid_attribute?(key)
+
           key = Utils.parse_key(key)
           submit_value = sanitize_relationship(value)
           to_submit[key] = submit_value

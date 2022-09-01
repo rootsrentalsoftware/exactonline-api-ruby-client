@@ -37,7 +37,7 @@ describe Elmas::Contact do
 
     it "should apply given filters for find_by" do
       resource = Elmas::Contact.new(id: "12abcdef-1234-1234-1234-123456abcdef", name: "Karel")
-      expect(Elmas).to receive(:get).with("crm/Contacts?$filter=Name+eq+'Karel'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("crm/Contacts?$filter=Name eq 'Karel'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:name, :id])
     end
   end
@@ -45,7 +45,7 @@ describe Elmas::Contact do
   context "Applying order" do
     it "should apply the order_by and filters" do
       resource = Elmas::Contact.new(id: "12abcdef-1234-1234-1234-123456abcdef", name: "Karel")
-      expect(Elmas).to receive(:get).with("crm/Contacts?$orderby=Name&$filter=Name+eq+'Karel'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("crm/Contacts?$orderby=Name&$filter=Name eq 'Karel'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:name, :id], order_by: :name)
     end
 

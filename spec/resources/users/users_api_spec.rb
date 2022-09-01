@@ -30,7 +30,7 @@ describe Elmas::User do
     end
 
     it "should apply given filters for find_by" do
-      expect(Elmas).to receive(:get).with("users/Users?$filter=Email+eq+'info@example.com'")
+      expect(Elmas).to receive(:get).with("users/Users?$filter=Email eq 'info@example.com'")
       resource.find_by(filters: [:email])
     end
   end

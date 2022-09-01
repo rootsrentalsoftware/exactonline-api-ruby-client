@@ -4,8 +4,8 @@ require "mechanize"
 require "uri"
 require "json"
 
-require File.expand_path("../utils", __FILE__)
-require File.expand_path("../response", __FILE__)
+require File.expand_path("utils", __dir__)
+require File.expand_path("response", __dir__)
 
 # from https://developers.exactonline.com/#Example retrieve access token.html
 
@@ -13,7 +13,6 @@ require File.expand_path("../response", __FILE__)
 # https://support.exactonline.com/community/s/knowledge-base#All-All-HNO-Concept-general-security-gen-auth-totpc
 
 module Elmas
-  # rubocop:disable Metrics/ModuleLength
   module OAuth
     def authorized?
       # Do a test call, return false if 401 or any error code
@@ -21,7 +20,7 @@ module Elmas
       response.results.first.present?
     rescue BadRequestException
       Elmas.error "Not yet authorized"
-      return false
+      false
     end
 
     def authorize_division

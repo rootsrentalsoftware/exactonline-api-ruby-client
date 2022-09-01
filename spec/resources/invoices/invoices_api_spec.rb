@@ -12,7 +12,15 @@ describe Elmas::SalesInvoice do
   end
 
   it "is valid with certain attributes" do
-    sales_invoice = Elmas::SalesInvoice.new(journal:"my-awesome-journal", ordered_by: "1230")
+    sales_invoice = Elmas::SalesInvoice.new(
+      journal:"my-awesome-journal",
+      ordered_by: "1230",
+      invoice_date: Time.now,
+      order_date: Time.now,
+      order_number: 123,
+      type: "A",
+      your_ref: "abc"
+    )
     expect(sales_invoice.valid?).to eq(true)
   end
 
@@ -38,19 +46,19 @@ describe Elmas::SalesInvoice do
 
     it "should apply given filters for find_by" do
       resource = Elmas::SalesInvoice.new(id: "12abcdef-1234-1234-1234-123456abcdef", journal: "22")
-      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoices?$filter=Journal+eq+'22'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoices?$filter=Journal eq '22'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:journal, :id])
     end
 
     it "should apply given filters for find_by as an array" do
       resource = Elmas::SalesInvoice.new(id: "12abcdef-1234-1234-1234-123456abcdef", journal: ["22", "24"])
-      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoices?$filter=Journal+eq+'22'+or+Journal+eq+'24'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoices?$filter=Journal eq '22' or Journal eq '24'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:journal, :id])
     end
 
     it 'should apply a numeric value without quotes' do
       resource = Elmas::SalesInvoice.new(order_number: 15300007)
-      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoices?$filter=OrderNumber+eq+15300007")
+      expect(Elmas).to receive(:get).with("salesinvoice/SalesInvoices?$filter=OrderNumber eq 15300007")
       resource.find_by(filters: [:order_number])
     end
   end

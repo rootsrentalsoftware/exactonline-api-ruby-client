@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Elmas
   class GoodsDeliveryLine
     # TODO: Fill out mandatory and other attributes
@@ -9,9 +11,9 @@ module Elmas
     # We get around this by specifying a wildcard on the $select param.
     def find_all(options = {})
       @order_by = options[:order_by]
-      @select = options[:select] ||= ['*']
-      response = get(uri([:order, :select]))
-      response.results if response
+      @select = options[:select] ||= ["*"]
+      response = get(uri(%i[order select]))
+      response&.results
     end
 
     def base_path
@@ -19,20 +21,19 @@ module Elmas
     end
 
     def mandatory_attributes
-      [:delivery_date, :item, :line_number, :sales_order_number]
+      %i[delivery_date item line_number sales_order_number]
     end
 
     def other_attributes
       SHARED_LINE_ATTRIBUTES.inject(
-        [
-          :quantity_delivered, :quantity_ordered,
-          :sales_order_line_id, :sales_order_line_number,
-          :serial_numbers, :storage_location,
-          :tracking_number, :unit_code
+        %i[
+          quantity_delivered quantity_ordered
+          sales_order_line_id sales_order_line_number
+          serial_numbers storage_location
+          tracking_number unit_code
         ],
         :<<
       )
     end
-
   end
 end

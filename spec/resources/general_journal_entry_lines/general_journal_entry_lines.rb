@@ -47,14 +47,14 @@ describe Elmas::GeneralJournalEntryLine do
     end
 
     it "should apply given filters for find_by" do
-      expect(Elmas).to receive(:get).with("generaljournalentry/GeneralJournalEntryLines?$filter=SerialNumber+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("generaljournalentry/GeneralJournalEntryLines?$filter=SerialNumber eq '1223'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:serial_number, :id])
     end
   end
 
   context "Applying order" do
     it "should apply the order_by and filters" do
-      expect(Elmas).to receive(:get).with("generaljournalentry/GeneralJournalEntryLines?$orderby=SerialNumber&$filter=SerialNumber+eq+'1223'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("generaljournalentry/GeneralJournalEntryLines?$orderby=SerialNumber&$filter=SerialNumber eq '1223'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:serial_number, :id], order_by: :serial_number)
     end
 

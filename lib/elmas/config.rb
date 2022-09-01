@@ -8,7 +8,7 @@ module Elmas
   module Config
     include ThreadsafeAttributes
     # An array of valid keys in the options hash
-    VALID_OPTIONS_KEYS = %i(
+    VALID_OPTIONS_KEYS = %i[
       access_token
       adapter
       client_id
@@ -22,7 +22,7 @@ module Elmas
       base_url
       refresh_token
       logger
-    ).freeze
+    ].freeze
 
     # By default, don't set a user access token
     DEFAULT_ACCESS_TOKEN = ""
@@ -63,7 +63,7 @@ module Elmas
     # An array of valid request/response formats
     VALID_FORMATS = [:json].freeze
 
-    DEFAULT_LOGGER = ::Logger.new(STDOUT)
+    DEFAULT_LOGGER = ::Logger.new($stdout)
 
     # @private
     threadsafe_attribute(*VALID_OPTIONS_KEYS)

@@ -37,7 +37,7 @@ describe Elmas::Project do
 
     it "should apply given filters for find_by" do
       resource = Elmas::Project.new(id: "12abcdef-1234-1234-1234-123456abcdef", code: "P001")
-      expect(Elmas).to receive(:get).with("project/Projects?$filter=Code+eq+'P001'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("project/Projects?$filter=Code eq 'P001'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:code, :id])
     end
   end
@@ -45,7 +45,7 @@ describe Elmas::Project do
   context "Applying order" do
     it "should apply the order_by and filters" do
       resource = Elmas::Project.new(id: "12abcdef-1234-1234-1234-123456abcdef", code: "P001")
-      expect(Elmas).to receive(:get).with("project/Projects?$orderby=Code&$filter=Code+eq+'P001'&$filter=ID+eq+guid'12abcdef-1234-1234-1234-123456abcdef'")
+      expect(Elmas).to receive(:get).with("project/Projects?$orderby=Code&$filter=Code eq 'P001'&$filter=ID eq guid'12abcdef-1234-1234-1234-123456abcdef'")
       resource.find_by(filters: [:code, :id], order_by: :code)
     end
 
