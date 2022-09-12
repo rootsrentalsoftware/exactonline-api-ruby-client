@@ -43,6 +43,7 @@ module Elmas
     end
 
     def self.parse_key(key)
+      # TODO: Peter, why is this?
       "VATCode" if key.casecmp "vat_code"
       Utils.camelize(key)
     end
