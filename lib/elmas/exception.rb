@@ -47,7 +47,7 @@ module Elmas
 
     def message
       "Resource #{@name} we received is unkown and might need to
-        be implemented, go to https://github.com/exactonline/exactonline-api-ruby-client
+        be implemented, go to https://github.com/rootsrentalsoftware/exactonline-api-ruby-client
         and open an issue or pull request"
     end
   end
