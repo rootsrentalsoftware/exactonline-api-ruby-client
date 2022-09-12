@@ -5,7 +5,7 @@ module Elmas
     include Elmas::Resource
 
     def base_path
-      "current/Me"
+      "Current/Me"
     end
 
     def mandatory_attributes

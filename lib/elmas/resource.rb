@@ -14,7 +14,7 @@ module Elmas
     attr_reader :response
 
     def initialize(attributes = {})
-      @attributes = validate_attributes(attributes) || {}
+      @attributes = Utils.normalize_hash(attributes)
       @filters = []
       @query = []
     end
