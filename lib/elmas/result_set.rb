@@ -55,7 +55,7 @@ module Elmas
 
         klass
       rescue NameError
-        raise InvalidResourceException.new(type), ""
+        raise InvalidResourceException, type
       end
     end
   end

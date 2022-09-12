@@ -26,7 +26,8 @@ module Elmas
     def validate_attributes(attributes)
       hash = Utils.normalize_hash(attributes)
       invalid_attributes = hash.keys - valid_attributes - default_attributes
-      raise Elmas::InvalidAttributeException.new(invalid_attributes), "" if valid_attributes.any? && invalid_attributes.any?
+      raise Elmas::InvalidAttributeException, invalid_attributes if valid_attributes.any? && invalid_attributes.any?
+
       hash
     end
 
@@ -59,7 +60,10 @@ module Elmas
     end
 
     def valid?
-      @invalid_attributes = mandatory_attributes - @attributes.keys
+      @invalid_attributes = mandatory_attributes.each_with_object([]) do |attribute, acc|
+        acc << attribute if @attributes[attribute].blank?
+      end
+
       @invalid_attributes.none?
     end
 
@@ -74,7 +78,7 @@ module Elmas
 
         @response = Elmas.put(basic_identifier_uri, params: attributes_to_submit)
       else
-        Elmas.error("Invalid Resource #{self.class.name}, attributes: #{@attributes.inspect}, mandatory_attributes: #{mandatory_attributes}")
+        Elmas.error("Validation: #{self.class.name}, invalid_attributes: #{@invalid_attributes}")
         raise Elmas::ValidationException, @invalid_attributes
       end
     end
