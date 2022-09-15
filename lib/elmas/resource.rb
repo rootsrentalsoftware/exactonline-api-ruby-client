@@ -51,7 +51,9 @@ module Elmas
       @response = Elmas.get(URI.decode_www_form_component(uri.to_s))
     end
 
-    def valid?
+    def valid?(validate: true)
+      return true unless validate
+
       @invalid_attributes = mandatory_attributes.each_with_object([]) do |attribute, acc|
         acc << attribute if @attributes[attribute].blank?
       end
@@ -62,9 +64,9 @@ module Elmas
       !@attributes[:id].nil?
     end
 
-    def save
+    def save(validate: true)
       attributes_to_submit = sanitize
-      if valid?
+      if valid?(validate: validate)
         return @response = Elmas.post(base_path, params: attributes_to_submit) unless id?
 
         @response = Elmas.put(basic_identifier_uri, params: attributes_to_submit)

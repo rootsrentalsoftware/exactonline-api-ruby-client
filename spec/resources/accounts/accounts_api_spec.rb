@@ -27,4 +27,21 @@ describe Elmas::Account do
     account.airplane = "Boeing 777"
     expect(account.airplaine).to eq nil
   end
+
+  it "is valid with mandatory attributes" do
+    account = Elmas::Account.new(
+      name: "Piet", code: "123", email: "piet@mondriaan.nl", status: "C", type: "A"
+    )
+    expect(account.valid?).to eq true
+  end
+
+  it "is not valid without mandatory attributes" do
+    account = Elmas::Account.new
+    expect(account.valid?).to eq false
+  end
+
+  it "is valid without mandatory attributes" do
+    account = Elmas::Account.new
+    expect(account.valid?(validate: false)).to eq true
+  end
 end
